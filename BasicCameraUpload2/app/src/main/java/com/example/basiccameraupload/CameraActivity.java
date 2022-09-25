@@ -92,79 +92,15 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-//    public void saveImageToGallery(Bitmap image){
-//        if(isExternalStorageWritable()){
-//            saveImage(image);
-//        }else{
-//            Toast.makeText(CameraActivity.this, "Permission to write to Gallery not granted.", Toast.LENGTH_LONG).show();
-//        }
-//    }
-//
-//    private boolean isExternalStorageWritable(){
-//        String state = Environment.getExternalStorageState();
-//        if(Environment.MEDIA_MOUNTED.equals(state)){
-//            return true;
-//        }
-//        return false;
-//    }
-
-//    private void saveImage(Bitmap image){
-//        String rootDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-//        File savedImageDirectory = new File(rootDirectory + "/saved_images");
-//        savedImageDirectory.mkdirs();
-//        String filename = String.format("%s.jpg", System.currentTimeMillis());
-//        File file = new File(savedImageDirectory, filename);
-//
-//        if (file.exists()) file.delete();
-//        try{
-//            FileOutputStream outFile = new FileOutputStream(file);
-//            image.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
-//            outFile.flush();
-//            outFile.close();
-//            Toast.makeText(CameraActivity.this, "Image Saved successfully.", Toast.LENGTH_LONG).show();
-//        }catch(Exception err){
-//            err.printStackTrace();
-//            Toast.makeText(CameraActivity.this, "Error with saving Image.", Toast.LENGTH_LONG).show();
-//        }
-//
-//        uploadImage(savedImageDirectory, filename);
-//
-//    }
-
     public void launchCameraActivity(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraActivityResultLauncher.launch(intent);
     }
 
-//    public void uploadImage(File directory, String filePath){
-//        File file = new File(directory, filePath);
-//        RequestBody requestBody = RequestBody.create(file, MediaType.parse("image/*"));
-//        MultipartBody.Part parts = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-//
-//        RequestBody someData = RequestBody.create( "This is a new image", MediaType.parse("text/plain"));
-//
-//        Retrofit retrofit = RetrofitClient.getRetrofit();
-//        UploadApis uploadApis = retrofit.create(UploadApis.class);
-//        Call call = uploadApis.uploadImage(someData, parts, c);
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onResponse(Call call, Response response) {
-//                Toast.makeText(CameraActivity.this, "Image Successfully Upload", Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, Throwable t) {
-//                Log.d("Error_TAG", "onFailure: Error: " + t.getMessage());
-//                Toast.makeText(CameraActivity.this, "Image Failed to Upload", Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-
     public void openUploadActivity(){
         Intent intent = new Intent(this, UploadActivity.class);
         intent.putExtra("clickedImage", clickedImage);
         startActivity(intent);
-
     }
 
 }

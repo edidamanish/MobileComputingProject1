@@ -52,18 +52,15 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
         savedImageDirectory.mkdirs();
         String filename = String.format("%s.jpg", System.currentTimeMillis());
         File file = new File(savedImageDirectory, filename);
-
         if (file.exists()) file.delete();
         try{
             FileOutputStream outFile = new FileOutputStream(file);
             image.compress(Bitmap.CompressFormat.JPEG, 90, outFile);
             outFile.flush();
             outFile.close();
-            Toast.makeText(UploadActivity.this, "Image Saved successfully.", Toast.LENGTH_LONG).show();
             uploadImage(savedImageDirectory, filename);
         }catch(Exception err){
             err.printStackTrace();
-            Toast.makeText(UploadActivity.this, "Error with saving Image.", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -72,23 +69,21 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
         File file = new File(directory, filePath);
         RequestBody requestBody = RequestBody.create(file, MediaType.parse("image/*"));
         MultipartBody.Part parts = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-
         RequestBody someData = RequestBody.create( categories[categoryPosition], MediaType.parse("text/plain"));
-
         Retrofit retrofit = RetrofitClient.getRetrofit();
         UploadApis uploadApis = retrofit.create(UploadApis.class);
         Call call = uploadApis.uploadImage(someData, parts);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                Toast.makeText(UploadActivity.this, "Image Successfully Upload", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadActivity.this, "Image Successfully Upload to Server", Toast.LENGTH_LONG).show();
                 goToHome();
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
                 Log.d("Error_TAG", "onFailure: Error: " + t.getMessage());
-                Toast.makeText(UploadActivity.this, "Image Failed to Upload", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadActivity.this, "Image Failed to Upload to Server", Toast.LENGTH_LONG).show();
             }
         });
     }
