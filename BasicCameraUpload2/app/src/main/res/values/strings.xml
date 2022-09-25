@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BasicCameraUpload</string>
+    <string name="definitely">Definitely</string>
+    <string name="do_you_want_to_upload_an_image">Do you want to upload an image?</string>
+    <string name="save_image">Save Image</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="todo">TODO</string>
+</resources>
