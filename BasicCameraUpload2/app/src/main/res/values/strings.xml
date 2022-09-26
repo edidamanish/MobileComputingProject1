@@ -5,4 +5,9 @@
     <string name="save_image">Save Image</string>
     <string name="take_picture">Take Picture</string>
     <string name="todo">TODO</string>
+    <string name="image_upload_success">Image Successfully Uploaded to Server</string>
+    <string name="image_upload_failed">Image Failed to Upload to Server</string>
+    <string name="camera_access_granted">Your Application has access to Camera Now.</string>
+    <string name="camera_access_denied">Your camera cannot access Camera. Permission Cancelled.</string>
+    <string name="camera_permission_rationale">Camera permission will allow taking pictures using Camera.</string>
 </resources>

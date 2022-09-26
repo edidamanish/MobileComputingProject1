@@ -12,26 +12,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import java.io.File;
-import java.io.FileOutputStream;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class CameraActivity extends AppCompatActivity {
     private ImageView imageView;
@@ -71,7 +57,7 @@ public class CameraActivity extends AppCompatActivity {
 
     public void enableRuntimePermission(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(CameraActivity.this, Manifest.permission.CAMERA)){
-            Toast.makeText(CameraActivity.this, "CAMERA permission allows us to access Camera App", Toast.LENGTH_LONG).show();
+            Toast.makeText(CameraActivity.this, R.string.camera_permission_rationale, Toast.LENGTH_LONG).show();
         }
         else{
             ActivityCompat.requestPermissions(CameraActivity.this, new String[]{Manifest.permission.CAMERA}, RequestPermissionCode);
@@ -84,9 +70,9 @@ public class CameraActivity extends AppCompatActivity {
         switch (requestCode) {
             case RequestPermissionCode:
                 if (result.length > 0 && result[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(CameraActivity.this, "Permission Granted, Now your application can access CAMERA.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CameraActivity.this, R.string.camera_access_granted, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(CameraActivity.this, "Permission Canceled, Now your application cannot access CAMERA.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CameraActivity.this, R.string.camera_access_denied, Toast.LENGTH_LONG).show();
                 }
                 break;
         }

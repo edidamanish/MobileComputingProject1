@@ -13,10 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileOutputStream;
-
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -76,14 +74,14 @@ public class UploadActivity extends AppCompatActivity implements AdapterView.OnI
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                Toast.makeText(UploadActivity.this, "Image Successfully Upload to Server", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadActivity.this, R.string.image_upload_success, Toast.LENGTH_LONG).show();
                 goToHome();
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
                 Log.d("Error_TAG", "onFailure: Error: " + t.getMessage());
-                Toast.makeText(UploadActivity.this, "Image Failed to Upload to Server", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadActivity.this, R.string.image_upload_failed, Toast.LENGTH_LONG).show();
             }
         });
     }

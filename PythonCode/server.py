@@ -15,7 +15,6 @@ def uploadImage():
 	files_ids = list(flask.request.files)
 	category = flask.request.form['requestBody']
 	curDir = os.getcwd()
-	image_num = 1
 	for file_id in files_ids:
 		imagefile = flask.request.files[file_id]
 		fileName = werkzeug.utils.secure_filename(imagefile.filename)
@@ -24,7 +23,6 @@ def uploadImage():
 		if not os.path.exists(newDir):
 			os.makedirs(newDir)
 		imagefile.save(newDir+'/' + currentTimeStr+'_'+fileName)
-		image_num = image_num + 1
 		print("\n")
 	return {
 		"message": "Image Uploaded Successfully",
