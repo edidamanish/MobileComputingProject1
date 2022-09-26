@@ -10,7 +10,7 @@ public class RetrofitClient {
     private static final String BASE_API_URL = "http://192.168.0.55:8000";
     private static Retrofit retrofit;
 
-    public static Retrofit getRetrofit(){
+    public static Retrofit getRetrofit() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
         if (retrofit == null) {
             Gson gson = new GsonBuilder().setLenient().create();
